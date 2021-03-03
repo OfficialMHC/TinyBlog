@@ -43,7 +43,7 @@
                     <a class="nav-link" href="#">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-contact mr-2" href="#">Contact</a>
+                    <a class="nav-link nav-contact" href="#">Contact</a>
                 </li>
                 @if(Auth::check())
                     <li class="nav-item">

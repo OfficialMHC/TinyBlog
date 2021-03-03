@@ -15,18 +15,14 @@ body {
     color: #0037bf !important;
     background-color: white;
     text-transform: uppercase;
+    border: 1px solid #4e73df;
+    padding: 10px 10px 10px 10px !important;
 }
-.navbar ul li .nav-home{
-    border-radius: 3px 0 0 3px;
+
+@media (max-width: 991px) {
+    .navbar .navbar-nav{
+        margin-top: 10px;
+        text-align: center;
+    }
 }
-.navbar ul li .nav-contact{
-    border-radius: 0 3px 3px 0;
-}
-.navbar ul li .nav-admin{
-    background-color: #4e73df;
-    color: white !important;
-}
-.navbar ul li .nav-login{
-    background-color: #4e73df;
-    color: white !important;
-}
+
