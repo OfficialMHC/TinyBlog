@@ -11,6 +11,22 @@ body {
     background-color: #4e73df;
 }
 .navbar ul li a{
-    font-size: .9rem;
+    font-size: .8rem;
+    color: #0037bf !important;
+    background-color: white;
     text-transform: uppercase;
+}
+.navbar ul li .nav-home{
+    border-radius: 3px 0 0 3px;
+}
+.navbar ul li .nav-contact{
+    border-radius: 0 3px 3px 0;
+}
+.navbar ul li .nav-admin{
+    background-color: #4e73df;
+    color: white !important;
+}
+.navbar ul li .nav-login{
+    background-color: #4e73df;
+    color: white !important;
 }
