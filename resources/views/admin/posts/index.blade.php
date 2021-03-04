@@ -2,12 +2,19 @@
 
     @section('content')
 
-        <h1>All Posts</h1>
+{{--        <h1>All Posts</h1>--}}
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <h4 class="font-weight-bold text-primary mt-1">All Posts List :</h4>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <a class="btn btn-primary float-right" href="{{ route('post.create') }}"><i class="fa fa-plus-square"></i> CREATE</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -15,7 +22,7 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <td>Owner</td>
+                            <th>Owner</th>
                             <th>Title</th>
                             <th>Picture</th>
                             <th>Created At</th>
@@ -25,7 +32,7 @@
                         <tfoot>
                         <tr>
                             <th>ID</th>
-                            <td>Owner</td>
+                            <th>Owner</th>
                             <th>Title</th>
                             <th>Picture</th>
                             <th>Created At</th>
@@ -41,7 +48,6 @@
                                 <td><img src="{{$post->post_image}}" alt="Post Image" height="50"></td>
                                 <td>{{ $post->created_at->diffForHumans() }}</td>
                                 <td>{{ $post->updated_at->diffForHumans() }}</td>
-
                             </tr>
                         @endforeach
                         </tbody>
