@@ -11,17 +11,25 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        // This is show all of the posts not the specific user post.
+//        $posts = Post::all();
+
+        // This is show all of the posts which is specific user post.
+        $posts = auth()->user()->posts;
+
         return view('admin.posts.index', ['posts' => $posts]);
     }
 
     public function create()
     {
+        $this->authorize('create', Post::class);
         return view('admin.posts.create');
     }
 
     public function store()
     {
+        $this->authorize('create', Post::class);
+
         $inputs = \request()->validate([
             'title' => 'required|min:5|max:255',
             'post_image' => 'file',
@@ -46,6 +54,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+//        $this->authorize('view', $post);
         return view('admin.posts.edit', ['post' => $post]);
     }
 
@@ -68,7 +77,9 @@ class PostController extends Controller
         // Update and also change the owner then use this below because this is a relation between the user and post.
 //        auth()->user()->posts()->save($post);
 
-        $post->update();
+        $this->authorize('update', $post);
+
+        $post->save();
 
         session()->flash('update-message', 'Post has been UPDATED Successfully! Post Title Is : ' . $post->title);
         return redirect()->route('post.index');
@@ -76,6 +87,7 @@ class PostController extends Controller
 
     public function destroy(Post $post, Request $request)
     {
+        $this->authorize('delete', $post);
         $post->delete();
         $request->session()->flash('delete-message', 'Post has been DELETED Successfully! Post Title Was : ' . $post->title);
         return back();

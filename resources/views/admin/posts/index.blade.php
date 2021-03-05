@@ -73,6 +73,8 @@
                                 <td>{{ $post->created_at->diffForHumans() }}</td>
                                 <td>{{ $post->updated_at->diffForHumans() }}</td>
                                 <td>
+{{--                                    can function is use for individual user can permission to see their action button--}}
+{{--                                    @can('view', $post)--}}
                                     <div class="btn-group">
                                         <a href="{{ route('post.edit', $post->id) }}" class="btn btn-sm btn-success rounded-0 mr-2"><i class="fa fa-edit"></i></a>
                                         <form action="{{ route('post.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are You Sure To DELETE This?')">
@@ -81,6 +83,7 @@
                                             <button type="submit" class="btn btn-sm btn-danger rounded-0"><i class="fa fa-trash"></i></button>
                                         </form>
                                     </div>
+{{--                                    @endcan--}}
                                 </td>
                             </tr>
                         @endforeach
