@@ -3,6 +3,28 @@
     @section('content')
 
 {{--        <h1>All Posts</h1>--}}
+        @if(session('create-message'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session('create-message') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @elseif(session('update-message'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>{{ session('update-message') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @elseif(session('delete-message'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ session('delete-message') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -27,6 +49,7 @@
                             <th>Picture</th>
                             <th>Created At</th>
                             <th>Updated At</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -37,6 +60,7 @@
                             <th>Picture</th>
                             <th>Created At</th>
                             <th>Updated At</th>
+                            <th>Action</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -48,6 +72,16 @@
                                 <td><img src="{{$post->post_image}}" alt="Post Image" height="40"></td>
                                 <td>{{ $post->created_at->diffForHumans() }}</td>
                                 <td>{{ $post->updated_at->diffForHumans() }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('post.edit', $post->id) }}" class="btn btn-sm btn-success rounded-0 mr-2"><i class="fa fa-edit"></i></a>
+                                        <form action="{{ route('post.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are You Sure To DELETE This?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger rounded-0"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
