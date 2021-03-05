@@ -6,16 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
+use Illuminate\Pagination\Paginator;
 
 class PostController extends Controller
 {
     public function index()
     {
+        Paginator::useBootstrap();
         // This is show all of the posts not the specific user post.
 //        $posts = Post::all();
 
         // This is show all of the posts which is specific user post.
-        $posts = auth()->user()->posts;
+//        $posts = auth()->user()->posts;
+
+        $posts = auth()->user()->posts()->paginate(5);;
 
         return view('admin.posts.index', ['posts' => $posts]);
     }
