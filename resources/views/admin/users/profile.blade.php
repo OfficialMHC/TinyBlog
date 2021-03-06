@@ -121,7 +121,7 @@
                         <div class="card-body">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="roleDataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="userProfileRoleDataTable" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
                                         <th>Option</th>
@@ -199,7 +199,7 @@
 
     @endsection
 
-        @section('scripts')
+    @section('scripts')
 
         <!-- Page level plugins -->
         <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
@@ -208,6 +208,6 @@
         <!-- Page level custom scripts -->
         <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 
-        @endsection
+    @endsection
 
 </x-admin-master>
