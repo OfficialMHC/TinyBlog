@@ -31,16 +31,16 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
-                        <h4 class="font-weight-bold text-primary mt-1">All Posts List :</h4>
+                        <h5 class="font-weight-bold text-primary mt-3">ALL POSTS LIST :</h5>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <a class="btn btn-primary float-right" href="{{ route('post.create') }}"><i class="fa fa-plus-square"></i> CREATE</a>
+                        <a class="btn btn-primary float-right mt-1" href="{{ route('post.create') }}"><i class="fa fa-plus-square"></i> CREATE</a>
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="postDataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
                             <th>ID</th>

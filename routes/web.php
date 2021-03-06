@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/admin/posts/{post}/update', [PostController::class, 'update'])->name('post.update');
     Route::delete('/admin/posts/{post}/delete', [PostController::class, 'destroy'])->name('post.destroy');
 
+    Route::get('admin/users', [UserController::class, 'index'])->name('users.index');
     Route::get('admin/users/{user}/profile', [UserController::class, 'show'])->name('user.profile.show');
     Route::put('admin/users/{user}/update', [UserController::class, 'update'])->name('user.profile.update');
 });
