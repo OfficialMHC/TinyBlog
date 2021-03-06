@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/users', [UserController::class, 'index'])->name('users.index');
     Route::get('admin/users/{user}/profile', [UserController::class, 'show'])->name('user.profile.show');
     Route::put('admin/users/{user}/update', [UserController::class, 'update'])->name('user.profile.update');
+    Route::delete('admin/users/{user}/delete', [UserController::class, 'destroy'])->name('user.destroy');
 });
 // This is for individual user can edit their posts or else
 //Route::get('/admin/posts/{post}/edit', [PostController::class, 'edit'])->middleware('can:view,post')->name('post.edit');

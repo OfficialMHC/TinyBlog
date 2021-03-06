@@ -5,21 +5,21 @@
 {{--        <h1>All Posts</h1>--}}
         @if(session('create-message'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>{{ session('create-message') }}</strong>
+                {{ session('create-message') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         @elseif(session('update-message'))
             <div class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>{{ session('update-message') }}</strong>
+                {{ session('update-message') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         @elseif(session('delete-message'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>{{ session('delete-message') }}</strong>
+                {{ session('delete-message') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

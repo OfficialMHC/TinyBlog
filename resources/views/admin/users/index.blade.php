@@ -2,6 +2,29 @@
 
     @section('content')
 
+        @if(session('create-message'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('create-message') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @elseif(session('update-message'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ session('update-message') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @elseif(session('delete-message'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('delete-message') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
                 <div class="card-header">
@@ -51,15 +74,15 @@
                                     <td>
                                         {{--                                    can function is use for individual user can permission to see their action button--}}
                                         {{--                                    @can('view', $post)--}}
-{{--                                        <div class="btn-group">--}}
+                                        <div class="btn-group">
 {{--                                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-sm btn-success rounded-0 mr-2"><i class="fa fa-edit"></i></a>--}}
-{{--                                            <form action="{{ route('post.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are You Sure To DELETE This?')">--}}
-{{--                                                @csrf--}}
-{{--                                                @method('DELETE')--}}
-{{--                                                <button type="submit" class="btn btn-sm btn-danger rounded-0"><i class="fa fa-trash"></i></button>--}}
-{{--                                            </form>--}}
-{{--                                        </div>--}}
-                                        {{--                                    @endcan--}}
+                                            <form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are You Sure To DELETE This?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger rounded-0"><i class="fa fa-trash"></i></button>
+                                            </form>
+                                        </div>
+{{--                                                                            @endcan--}}
                                     </td>
                                 </tr>
                             @endforeach
