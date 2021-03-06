@@ -53,7 +53,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('blog-post', ['post' => $post]);
+        return view('components.home.blog-post', ['post' => $post]);
     }
 
     public function edit(Post $post)
