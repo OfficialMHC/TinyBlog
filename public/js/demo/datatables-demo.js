@@ -2,4 +2,5 @@
 $(document).ready(function() {
   $('#postDataTable').DataTable();
   $('#userDataTable').DataTable();
+  $('#roleDataTable').DataTable();
 });

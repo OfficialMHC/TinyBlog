@@ -10,6 +10,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('admin/users', [UserController::class, 'index'])->name('users.index');
+    Route::put('admin/user/{user}/attach', [UserController::class, 'roleAttach'])->name('user.role.attach');
+    Route::put('admin/user/{user}/detach', [UserController::class, 'roleDetach'])->name('user.role.detach');
 });
 
 // This is using UserPolicy so that's why the specific user or the admin can access and update their profile.

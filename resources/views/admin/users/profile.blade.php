@@ -95,6 +95,119 @@
             <div class="col-sm-12 col-md-1 col-lg-2"></div>
         </div>
 
+        @if(session('role-attach'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('role-attach') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @elseif(session('role-detach'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('role-detach') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+        <div class="row">
+                <div class="col-sm-12 col-md-1 col-lg-2"></div>
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <h5 class="font-weight-bold text-primary mt-3">USER ROLE TABLE</h5>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="roleDataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Option</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Slug</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Option</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Slug</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    @foreach($roles as $role)
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        @foreach($user->roles as $user_role)
+                                                            @if($user_role->slug == $role->slug)
+                                                                checked
+                                                            @endif
+                                                        @endforeach
+                                                    >
+                                                </div>
+                                            </td>
+                                            <td>{{ $role->id }}</td>
+                                            <td>{{ $role->name }}</td>
+                                            <td>{{ $role->slug }}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <form action="{{ route('user.role.attach', $user) }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="role" value="{{ $role->id }}">
+                                                        <button type="submit" class="btn btn-sm btn-info rounded-0 mr-2"
+                                                            @if($user->roles->contains($role))
+                                                                disabled
+                                                            @endif
+                                                        >
+                                                            Attach
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('user.role.detach', $user) }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="role" value="{{ $role->id }}">
+                                                        <button type="submit" class="btn btn-sm btn-danger rounded-0"
+                                                            @if(!$user->roles->contains($role))
+                                                                disabled
+                                                            @endif
+                                                        >
+                                                            Detach
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-1 col-lg-2"></div>
+            </div>
+
     @endsection
+
+        @section('scripts')
+
+        <!-- Page level plugins -->
+        <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+
+        @endsection
 
 </x-admin-master>
