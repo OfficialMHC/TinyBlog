@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -68,10 +69,21 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+//    public function userHasRole($role_name)
+//    {
+//        foreach ($this->roles as $role) {
+//            if ($role_name == $role->name) {
+//                return true;
+//            }
+//            return false;
+//        }
+//    }
+
+    // Use it for lower case role name both or you can using above method but when you can above method you can use write name into the web.
     public function userHasRole($role_name)
     {
         foreach ($this->roles as $role) {
-            if ($role_name == $role->name) {
+            if (Str::lower($role_name) == Str::lower($role->name)) {
                 return true;
             }
             return false;
