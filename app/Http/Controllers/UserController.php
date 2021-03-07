@@ -32,7 +32,7 @@ class UserController extends Controller
             'password' => ['required', 'min:6', 'max:255', 'confirmed'],
         ]);
 
-        if (\request('avatar')) {
+        if (\request('avatar', )) {
             $inputs['avatar'] = \request('avatar')->store('images/user');
         }
 

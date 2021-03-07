@@ -4,5 +4,6 @@ $(document).ready(function() {
   $('#userDataTable').DataTable();
   $('#userProfileRoleDataTable').DataTable();
   $('#roleDataTable').DataTable();
+  $('#rolePermissionDataTable').DataTable();
   $('#permissionDataTable').DataTable();
 });
