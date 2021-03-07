@@ -41,17 +41,22 @@ class RoleController extends Controller
 
     public function update(Role $role)
     {
+        \request()->validate([
+            'name' => ['required'],
+        ]);
+
         $role->name = Str::ucfirst(\request('name'));
-        $role->slug = Str::of(\request('name'))->slug('-');
+        $role->slug = Str::of(Str::lower(\request('name')))->slug('-');
 
         if($role->isDirty('name')) {
             session()->flash('update-message', \request('name') . ' : Role has been UPDATED Successfully!');
             $role->save();
         } else {
-            session()->flash('update-message', 'Nothing has been UPDATED');
+            session()->flash('update-message', 'Nothing has been UPDATED!');
+            return back();
         }
 
-        return back();
+        return redirect()->route('roles.index');
     }
 
     public function permissionAttach(Role $role)
