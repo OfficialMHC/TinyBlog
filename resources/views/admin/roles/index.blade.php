@@ -44,6 +44,13 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                        @elseif(session('delete-message'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('delete-message') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         @endif
 
                         <div class="table-responsive">
@@ -71,32 +78,16 @@
                                         <td>{{ $role->name }}</td>
                                         <td>{{ $role->slug }}</td>
                                         <td>
-{{--                                            <div class="btn-group">--}}
-{{--                                                <form action="{{ route('user.role.attach', $user) }}" method="POST">--}}
-{{--                                                    @csrf--}}
-{{--                                                    @method('PUT')--}}
-{{--                                                    <input type="hidden" name="role" value="{{ $role->id }}">--}}
-{{--                                                    <button type="submit" class="btn btn-sm btn-info rounded-0 mr-2"--}}
-{{--                                                            @if($user->roles->contains($role))--}}
-{{--                                                            disabled--}}
-{{--                                                        @endif--}}
-{{--                                                    >--}}
-{{--                                                        Attach--}}
-{{--                                                    </button>--}}
-{{--                                                </form>--}}
-{{--                                                <form action="{{ route('user.role.detach', $user) }}" method="POST">--}}
-{{--                                                    @csrf--}}
-{{--                                                    @method('PUT')--}}
-{{--                                                    <input type="hidden" name="role" value="{{ $role->id }}">--}}
-{{--                                                    <button type="submit" class="btn btn-sm btn-danger rounded-0"--}}
-{{--                                                            @if(!$user->roles->contains($role))--}}
-{{--                                                            disabled--}}
-{{--                                                        @endif--}}
-{{--                                                    >--}}
-{{--                                                        Detach--}}
-{{--                                                    </button>--}}
-{{--                                                </form>--}}
-{{--                                            </div>--}}
+                                            <div class="btn-group">
+                                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-sm btn-success rounded-0 mr-2"><i class="fa fa-edit"></i></a>
+                                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('Are You Sure To DELETE This?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger rounded-0">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

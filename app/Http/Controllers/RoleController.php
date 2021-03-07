@@ -29,4 +29,31 @@ class RoleController extends Controller
         session()->flash('create-message', 'New Role has been CREATED Successfully!');
         return back();
     }
+
+    public function edit(Role $role)
+    {
+        return view('admin.roles.edit', ['role' => $role]);
+    }
+
+    public function update(Role $role)
+    {
+        $role->name = Str::ucfirst(\request('name'));
+        $role->slug = Str::of(\request('name'))->slug('-');
+
+        if($role->isDirty('name')) {
+            session()->flash('update-message', \request('name') . ' : Role has been UPDATED Successfully!');
+            $role->save();
+        } else {
+            session()->flash('update-message', 'Nothing has been UPDATED');
+        }
+
+        return back();
+    }
+
+    public function destroy(Role $role)
+    {
+        $role->delete();
+        session()->flash('delete-message', $role->name . ' : Role has been DELETED Successfully!');
+        return back();
+    }
 }
