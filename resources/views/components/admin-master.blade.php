@@ -61,16 +61,12 @@
         <!-- Post Nav Item - Pages Collapse Menu -->
         <x-admin.sidebar.admin-sidebar-posts-links></x-admin.sidebar.admin-sidebar-posts-links>
 
-        <!-- User Nav Item - Pages Collapse Menu -->
+
         @if(auth()->user()->userHasRole('Admin'))
 
+            <!-- User Nav Item - Pages Collapse Menu -->
             <x-admin.sidebar.admin-sidebar-users-links></x-admin.sidebar.admin-sidebar-users-links>
-
-        @endif
-
-        <!-- User Nav Item - Pages Collapse Menu -->
-        @if(auth()->user()->userHasRole('Admin'))
-
+                <!-- User Nav Item - Pages Collapse Menu -->
             <x-admin.sidebar.authorization-links></x-admin.sidebar.authorization-links>
 
         @endif
